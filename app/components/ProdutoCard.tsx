@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { Divider, Chip } from 'react-native-paper';
 
-const ProdutoCard = ({ produto }) => (
+// Tipando a prop 'produto'
+const ProdutoCard = ({ produto }: { produto: { id: number, imagem: any, nome: string, preco: string, mercado: string } }) => (
   <View key={produto.id} style={{
     width: '48%',
     marginBottom: 16,
@@ -14,7 +15,6 @@ const ProdutoCard = ({ produto }) => (
   }}>
     <Image source={produto.imagem} style={{ width: '100%', height: 100, resizeMode: 'contain' }} />
     <Divider />
-    {/* Chip ajustado ao tamanho da palavra */}
     <Chip
       style={{
             marginRight: 8,

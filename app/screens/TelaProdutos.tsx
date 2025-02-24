@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import ProdutosScreen from './screens/ProdutosScreen';
+import ProdutosScreen from './ProdutosScreen';
 
 export default function App() {
   return (
