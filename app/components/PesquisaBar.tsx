@@ -6,7 +6,7 @@ const MyComponent = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   return (
-    <View style={{ padding: 16 }}>
+    <View style={{ marginTop: 10, marginBottom: 27 }}>
       <Searchbar
         placeholder="Papel Higiênico"
         onChangeText={setSearchQuery}

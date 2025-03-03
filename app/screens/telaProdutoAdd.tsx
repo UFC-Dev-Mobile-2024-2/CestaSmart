@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { View, Image, StyleSheet, ScrollView } from "react-native";
 import { Appbar, Button, Card, Chip, IconButton, Text, useTheme, BottomNavigation } from "react-native-paper";
+import { useNavigation } from '@react-navigation/native';
+
 
 const ProdutoScreen = () => {
-  const theme = useTheme();
+  const navigation = useNavigation(); // Hook de navegação
+
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "home", title: "Home", icon: "home" },
@@ -12,6 +15,10 @@ const ProdutoScreen = () => {
     { key: "lista", title: "Lista", icon: "format-list-bulleted" },
     { key: "perfil", title: "Perfil", icon: "account" },
   ]);
+
+  const handlePress = () => {
+    navigation.navigate('ProdutosScreen'); // Vai para a tela específica do óleo
+  };
 
   const renderScene = BottomNavigation.SceneMap({
     home: () => <View />,
@@ -24,7 +31,7 @@ const ProdutoScreen = () => {
   return (
     <View style={styles.container}>
       <Appbar.Header style={styles.appbar}>
-        <Appbar.BackAction onPress={() => {}} />
+        <Appbar.BackAction onPress={handlePress} />
         <Appbar.Content title="Produto" />
         <Appbar.Action icon="bell-outline" onPress={() => {}} />
       </Appbar.Header>
