@@ -8,13 +8,11 @@ import ProdutoCard from '../components/ProdutoCard';
 import MenuInferior from '../components/MenuInferior';
 
 export default function TelaHome() {
-  // 📌 Adicionando estado dos produtos corretamente
   const [produtos, setProdutos] = useState([
     { id: 1, imagem: { uri: '' }, nome: 'Produto 1', preco: 'R$ 10,00', mercado: 'Mercado A' },
     { id: 2, imagem: { uri: '' }, nome: 'Produto 2', preco: 'R$ 15,00', mercado: 'Mercado B' },
   ]);
 
-  // Verifica se os produtos estão sendo carregados corretamente
   useEffect(() => {
     console.log("Produtos carregados:", produtos);
   }, []);

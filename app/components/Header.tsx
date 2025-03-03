@@ -9,12 +9,10 @@ const MyComponent = () => {
   const _handleMore = () => console.log('Shown more');
 
   return (
-    <Appbar.Header style={{ backgroundColor: '#fff8f6' }}>
+    <Appbar.Header mode="center-aligned">
       <Appbar.BackAction onPress={_goBack} />
-      <Appbar.Content title="Produtos" />
-      {/* Se necessário, adicione outros componentes de ações */}
-      {/* <Appbar.Action icon="magnify" onPress={_handleSearch} /> */}
-      {/* <Appbar.Action icon="dots-vertical" onPress={_handleMore} /> */}
+      <Appbar.Content title="Title" />
+      <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
     </Appbar.Header>
   );
 };
