@@ -17,7 +17,7 @@ const ProdutoScreen = () => {
   ]);
 
   const handlePress = () => {
-    navigation.navigate('ProdutosScreen'); // Vai para a tela específica do óleo
+    navigation.navigate('ProdutosScreen');
   };
 
   const renderScene = BottomNavigation.SceneMap({

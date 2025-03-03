@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native'; // Adiciona TouchableOpacity
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Divider, Chip } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
 const ProdutoCard = ({ produto }: { produto: { id: number, imagem: any, nome: string, preco: string, mercado: string } }) => {
-  const navigation = useNavigation(); // Hook para navegação
+  const navigation = useNavigation();
 
   const handlePress = () => {
-      navigation.navigate('telaProdutoAdd', { produto }); // Vai para a tela específica do óleo
+      navigation.navigate('telaProdutoAdd', { produto });
   };
 
   return (
