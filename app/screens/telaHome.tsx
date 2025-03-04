@@ -2,37 +2,47 @@ import { useState, useEffect } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import ParaVoce from '../components/ParaVoce';
-import Categoria from '../components/Categoria';
 import OfertaProduto from '../components/OfertaProduto';
 import ProdutoCard from '../components/ProdutoCard';
 import MenuInferior from '../components/MenuInferior';
+import { useNavigation } from '@react-navigation/native';
+import PesquisaBar from '../components/PesquisaBar';
+import CategoriasHome from '../components/CategoriasHome';
 
 export default function TelaHome() {
-  const [produtos, setProdutos] = useState([
-    { id: 1, imagem: { uri: '' }, nome: 'Produto 1', preco: 'R$ 10,00', mercado: 'Mercado A' },
-    { id: 2, imagem: { uri: '' }, nome: 'Produto 2', preco: 'R$ 15,00', mercado: 'Mercado B' },
-  ]);
+    const navigation = useNavigation();
 
+      const [search, setSearch] = useState('');
+    
+  
+    const produtos = [
+        { id: 1, nome: 'Óleo de Soja', preco: 'R$ 9,99', mercado: 'Nosso Atacarejo', imagem: require('../../assets/images/oleo.webp') },
+        { id: 2, nome: 'YoPRO', preco: 'R$ 13,99', mercado: 'Supermercado Pinheiro', imagem: require('../../assets/images/yopro.png') },
+        { id: 3, nome: 'Molho de tomate', preco: 'R$ 4,99', mercado: 'Super São Geraldo', imagem: require('../../assets/images/molho.png') },
+    ];
+
+    const produtosFiltrados = produtos.filter((produto) =>
+      produto.nome.toLowerCase().includes(search.toLowerCase())
+    );
+    
   useEffect(() => {
     console.log("Produtos carregados:", produtos);
   }, []);
 
   return (
     <ScrollView style={styles.container}>
-      <Header />
+      <PesquisaBar search={search} setSearch={setSearch} />
       <ParaVoce />
-      <Categoria />
+      <CategoriasHome />
 
-      {/* Seção de Produtos */}
-      <View style={styles.produtoContainer}>
-        {produtos.length > 0 ? (
-          produtos.map((produto) => <ProdutoCard key={produto.id} produto={produto} />)
-        ) : (
-          <Text style={styles.carregandoTexto}>Carregando produtos...</Text>
-        )}
-      </View>
+      <ScrollView style={{ marginTop: 20, paddingHorizontal: 16 }}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+          {produtosFiltrados.map((produto) => (
+            <ProdutoCard key={produto.id} produto={produto} />
+          ))}
+        </View>
+      </ScrollView>
 
-      <OfertaProduto />
       <MenuInferior />
     </ScrollView>
   );
