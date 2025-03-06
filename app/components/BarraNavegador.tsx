@@ -7,7 +7,7 @@ import HomeScreen from "../screens/telaHome";
 import CartScreen from "../screens/telaCesta";
 import ScanScreen from "../screens/telaScan"; //n tem
 import ListScreen from "../screens/telaListas";
-import ProfileScreen from "../screens/telaPerfil"; //n tem
+import ProfileScreen from "../screens/telaPerfil";
 
 const Tab = createBottomTabNavigator();
 
