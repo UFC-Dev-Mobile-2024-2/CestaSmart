@@ -5,7 +5,7 @@ import FeatherIcon from "react-native-vector-icons/Feather"; // Correção na im
 
 import HomeScreen from "../screens/telaHome";
 import CartScreen from "../screens/telaCesta";
-import ScanScreen from "../screens/telaScan"; //n tem
+import ScanScreen from "../screens/telaScan";
 import ListScreen from "../screens/telaListas";
 import ProfileScreen from "../screens/telaPerfil";
 
