@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
 import { Appbar, Button, IconButton, List, Text, useTheme, BottomNavigation } from "react-native-paper";
+import { useNavigation } from '@react-navigation/native';
 
 const CompararPrecosScreen = () => {
+    const navigation = useNavigation(); // Hook de navegação
+  
+    const voltarProduto = () => {
+      navigation.navigate('telaProdutoAdd');
+    };
+
   const theme = useTheme();
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -30,7 +37,7 @@ const CompararPrecosScreen = () => {
   return (
     <View style={styles.container}>
       <Appbar.Header style={styles.appbar}>
-        <Appbar.BackAction onPress={() => {}} />
+        <Appbar.BackAction onPress={voltarProduto} />
         <Appbar.Content title="Comparar Preços" />
         <Appbar.Action icon="bell-outline" onPress={() => {}} />
       </Appbar.Header>

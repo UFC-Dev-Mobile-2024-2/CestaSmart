@@ -20,6 +20,10 @@ const ProdutoScreen = () => {
     navigation.navigate('ProdutosScreen');
   };
 
+  const acessarComparar = () => {
+    navigation.navigate('telaComparar');
+  };
+
   const renderScene = BottomNavigation.SceneMap({
     home: () => <View />,
     cesta: () => <View />,
@@ -49,7 +53,7 @@ const ProdutoScreen = () => {
 
         <Chip mode="outlined" style={styles.chip}>MENOR PREÇO</Chip>
         <Text style={styles.price}>R$ 9.99</Text>
-        <Text style={styles.link}>🔍 Ver mais opções de preços</Text>
+        <Text onPress={acessarComparar} style={styles.link}>🔍 Ver mais opções de preços</Text>
 
         <View style={styles.buttonsContainer}>
           <Button mode="outlined" style={styles.cancelButton} onPress={() => {}}>Cancelar</Button>
