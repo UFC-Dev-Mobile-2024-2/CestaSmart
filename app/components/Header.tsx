@@ -3,27 +3,29 @@ import { Appbar } from "react-native-paper";
 import { useRouter, useSegments } from "expo-router";
 
 const MyComponent = () => {
-  const router = useRouter(); // Substitui useNavigation()
-  const segments = useSegments(); // Obtém a rota atual
+  const router = useRouter();
+  const segments = useSegments();
 
   const voltarHome = () => {
-    router.push("/home"); // Agora usa a barra inicial
+    router.push("/home"); // Certifique-se de que app/home.tsx existe
   };
 
   const _handleMore = () => console.log("Shown more");
 
-  // Determinar dinamicamente o título baseado na rota
+  // Verificar segmentos corretamente
   const getTitle = () => {
-    console.log(segments); // Verifique quais segmentos estão sendo retornados
-    if (segments.includes("home")) return "Página Inicial";
-    if (segments.includes("perfil")) return "Perfil";
-    return "Título Padrão"; // Defina um título padrão para outras telas
+    const currentRoute = segments.join("/");
+    console.log("Rota atual:", currentRoute);
+
+    if (currentRoute === "home") return "Página Inicial";
+    if (currentRoute === "perfil") return "Perfil";
+    return "Título Padrão";
   };
 
   return (
     <Appbar.Header mode="center-aligned">
       <Appbar.BackAction onPress={voltarHome} />
-      <Appbar.Content title={getTitle()} /> {/* O título muda dinamicamente */}
+      <Appbar.Content title={getTitle()} />
       <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
     </Appbar.Header>
   );
