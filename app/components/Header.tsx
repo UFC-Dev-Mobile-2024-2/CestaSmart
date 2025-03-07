@@ -1,36 +1,31 @@
-import * as React from 'react';
-import { Appbar } from 'react-native-paper';
-import { useNavigation, useRoute } from '@react-navigation/native'; // Importando useRoute para acessar a rota atual
+import * as React from "react";
+import { Appbar } from "react-native-paper";
+import { useRouter, useSegments } from "expo-router";
 
 const MyComponent = () => {
-  const navigation = useNavigation();
-  const route = useRoute();  // Obtendo a rota atual
-
-  const _goBack = () => console.log('Went back');
+  const router = useRouter();
+  const segments = useSegments();
 
   const voltarHome = () => {
-    navigation.navigate('telaHome');
+    router.push("/home"); // Certifique-se de que app/home.tsx existe
   };
 
-  const _handleSearch = () => console.log('Searching');
+  const _handleMore = () => console.log("Shown more");
 
-  const _handleMore = () => console.log('Shown more');
+  // Verificar segmentos corretamente
+  const getTitle = () => {
+    const currentRoute = segments.join("/");
+    console.log("Rota atual:", currentRoute);
 
-  // Atualizando o título dinamicamente baseado na tela
-  React.useEffect(() => {
-    const title = route.name === 'telaHome' ? 'Página Inicial' : 
-                  route.name === 'telaPerfil' ? 'Perfil' :
-                  'Título Padrão'; // Coloque aqui o título para outras telas
-    
-    navigation.setOptions({
-      title: title,  // Mudando o título da Appbar dinamicamente
-    });
-  }, [route.name, navigation]); // Atualiza o título sempre que a rota mudar
+    if (currentRoute === "home") return "Página Inicial";
+    if (currentRoute === "perfil") return "Perfil";
+    return "Título Padrão";
+  };
 
   return (
     <Appbar.Header mode="center-aligned">
       <Appbar.BackAction onPress={voltarHome} />
-      <Appbar.Content title={route.name} /> {/* O título será atualizado automaticamente */}
+      <Appbar.Content title={getTitle()} />
       <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
     </Appbar.Header>
   );

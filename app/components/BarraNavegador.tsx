@@ -2,10 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FeatherIcon from "react-native-vector-icons/Feather"; // Correção na importação
 
-import HomeScreen from "../screens/telaHome";
-import CartScreen from "../screens/telaCesta";
-import ListScreen from "../screens/telaListas";
-import ProfileScreen from "../screens/telaPerfil";
+import HomeScreen from "../home";
+import CartScreen from "../cesta";
+import ListScreen from "../listas";
+import ProfileScreen from "../perfil";
 
 const Tab = createBottomTabNavigator();
 
