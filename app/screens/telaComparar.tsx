@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
-import { Appbar, Button, IconButton, List, Text, useTheme, BottomNavigation } from "react-native-paper";
-import { useNavigation } from '@react-navigation/native';
+import { Appbar, Button, IconButton, List, Text, BottomNavigation } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../routes"; 
+
+type NavigationProps = NativeStackNavigationProp<StackParamList, "telaProdutoAdd">;
 
 const CompararPrecosScreen = () => {
-    const navigation = useNavigation(); // Hook de navegação
-  
-    const voltarProduto = () => {
-      navigation.navigate('telaProdutoAdd');
-    };
+  const navigation = useNavigation<NavigationProps>(); 
 
-  const theme = useTheme();
+  const voltarProduto = () => {
+    navigation.navigate("telaProdutoAdd");
+  };
+
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "home", title: "Home", icon: "home" },
