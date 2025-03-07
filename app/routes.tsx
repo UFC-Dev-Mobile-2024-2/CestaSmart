@@ -4,11 +4,16 @@ import TelaProdutoAdd from './screens/telaProdutoAdd';
 import TelaHome from './screens/telaHome';
 import ProdutosScreen from './screens/ProdutosScreen';
 import TelaComparar from './screens/telaComparar';
+import Onboarding from './screens/Onboarding';
+import Login from './screens/Login';
+import Cadastro from './screens/Cadastro';
 
-// Criando o Stack Navigator
 const Stack = createStackNavigator<StackParamList>();
 
 export type StackParamList = {
+  Onboarding: undefined;
+  Login: undefined;
+  Cadastro: undefined;
   telaHome: undefined;
   ProdutosScreen: undefined;
   telaProdutoAdd: undefined;
@@ -17,14 +22,16 @@ export type StackParamList = {
 
 const Routes = () => {
   return (
-    <Stack.Navigator initialRouteName="telaHome">
-      <Stack.Screen options={{ headerShown: false }} name="telaHome" component={TelaHome} />
-      <Stack.Screen options={{ headerShown: false }} name="ProdutosScreen" component={ProdutosScreen} />
-      <Stack.Screen options={{ headerShown: false }} name="telaProdutoAdd" component={TelaProdutoAdd} />
-      <Stack.Screen options={{ headerShown: false }} name="telaComparar" component={TelaComparar} />
-      </Stack.Navigator>
+    <Stack.Navigator initialRouteName="Onboarding" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Onboarding" component={Onboarding} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Cadastro" component={Cadastro} />
+      <Stack.Screen name="telaHome" component={TelaHome} />
+      <Stack.Screen name="ProdutosScreen" component={ProdutosScreen} />
+      <Stack.Screen name="telaProdutoAdd" component={TelaProdutoAdd} />
+      <Stack.Screen name="telaComparar" component={TelaComparar} />
+    </Stack.Navigator>
   );
 };
-
 
 export default Routes;
