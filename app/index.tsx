@@ -1,8 +1,9 @@
-import React from 'react';
-import Routes from './routes';
+import { View, Text } from 'react-native';
 
-const App = () => {
-  return <Routes />;
-};
-
-export default App;
+export default function TelaHome() {
+  return (
+    <View>
+      <Text>Tela Home</Text>
+    </View>
+  );
+}

@@ -1,30 +1,31 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
 export default function CategoriasHome() {
-    const navigation = useNavigation();
-    
-    const handlePress = () => {
-        navigation.navigate('ProdutosScreen');
-    };
+  const router = useRouter(); // Substitui useNavigation()
 
-  const categories = [
-    { id: 1, name: 'Alimentos', icon: 'ios-fast-food' },
-    { id: 2, name: 'Bebidas', icon: 'ios-wine' },
-    { id: 3, name: 'Limpeza', icon: 'ios-brush' },
-    { id: 4, name: 'Higiene', icon: 'ios-body' },
+  const handlePress = () => {
+    router.push('/produtos'); // Agora usa o expo-router corretamente
+  };
+
+  // Definição das categorias com tipagem correta
+  const categories: { id: number; name: string; icon: keyof typeof Ionicons.glyphMap }[] = [
+    { id: 1, name: 'Alimentos', icon: 'fast-food' },
+    { id: 2, name: 'Bebidas', icon: 'wine' },
+    { id: 3, name: 'Limpeza', icon: 'brush' },
+    { id: 4, name: 'Higiene', icon: 'body' },
   ];
 
   return (
     <View style={styles.container}>
-        <Text onPress={handlePress} style={styles.productsLinkText}>Produtos →</Text>
+      <Text onPress={handlePress} style={styles.productsLinkText}>Produtos →</Text>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scroll}>
         {categories.map((category) => (
           <View key={category.id} style={styles.categoryWrapper}>
             <View style={styles.categoryCard}>
+              <Ionicons name={category.icon} size={40} color="#333" />
             </View>
             <Text style={styles.categoryText}>{category.name}</Text>
           </View>
@@ -40,9 +41,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 16,
     paddingHorizontal: 16,
-  },
-  productsLink: {
-    marginBottom: 10,
   },
   productsLinkText: {
     fontSize: 18,
@@ -71,8 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#333',
     marginTop: 8,
-    alignSelf: 'flex-end', // Alinha o texto à direita
-    textAlign: 'left', // Mantém o alinhamento do texto à direita
-    width: 100, // Mantém o mesmo tamanho da box
+    textAlign: 'center',
+    width: 100,
   },
 });

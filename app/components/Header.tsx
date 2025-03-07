@@ -1,36 +1,29 @@
-import * as React from 'react';
-import { Appbar } from 'react-native-paper';
-import { useNavigation, useRoute } from '@react-navigation/native'; // Importando useRoute para acessar a rota atual
+import * as React from "react";
+import { Appbar } from "react-native-paper";
+import { useRouter, useSegments } from "expo-router";
 
 const MyComponent = () => {
-  const navigation = useNavigation();
-  const route = useRoute();  // Obtendo a rota atual
-
-  const _goBack = () => console.log('Went back');
+  const router = useRouter(); // Substitui useNavigation()
+  const segments = useSegments(); // Obtém a rota atual
 
   const voltarHome = () => {
-    navigation.navigate('telaHome');
+    router.push("/home"); // Agora usa a barra inicial
   };
 
-  const _handleSearch = () => console.log('Searching');
+  const _handleMore = () => console.log("Shown more");
 
-  const _handleMore = () => console.log('Shown more');
-
-  // Atualizando o título dinamicamente baseado na tela
-  React.useEffect(() => {
-    const title = route.name === 'telaHome' ? 'Página Inicial' : 
-                  route.name === 'telaPerfil' ? 'Perfil' :
-                  'Título Padrão'; // Coloque aqui o título para outras telas
-    
-    navigation.setOptions({
-      title: title,  // Mudando o título da Appbar dinamicamente
-    });
-  }, [route.name, navigation]); // Atualiza o título sempre que a rota mudar
+  // Determinar dinamicamente o título baseado na rota
+  const getTitle = () => {
+    console.log(segments); // Verifique quais segmentos estão sendo retornados
+    if (segments.includes("home")) return "Página Inicial";
+    if (segments.includes("perfil")) return "Perfil";
+    return "Título Padrão"; // Defina um título padrão para outras telas
+  };
 
   return (
     <Appbar.Header mode="center-aligned">
       <Appbar.BackAction onPress={voltarHome} />
-      <Appbar.Content title={route.name} /> {/* O título será atualizado automaticamente */}
+      <Appbar.Content title={getTitle()} /> {/* O título muda dinamicamente */}
       <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
     </Appbar.Header>
   );
