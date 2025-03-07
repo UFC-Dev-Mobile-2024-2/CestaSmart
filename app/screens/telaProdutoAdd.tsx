@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { View, Image, StyleSheet, ScrollView } from "react-native";
-import { Appbar, Button, Card, Chip, IconButton, Text, useTheme, BottomNavigation } from "react-native-paper";
-import { useNavigation } from '@react-navigation/native';
+import { Appbar, Button, Chip, IconButton, Text, BottomNavigation } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamList } from "../routes"; 
 
+type NavigationProps = NativeStackNavigationProp<StackParamList, "ProdutosScreen">;
 
 const ProdutoScreen = () => {
-  const navigation = useNavigation(); // Hook de navegação
+  const navigation = useNavigation<NavigationProps>(); 
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -17,11 +20,11 @@ const ProdutoScreen = () => {
   ]);
 
   const handlePress = () => {
-    navigation.navigate('ProdutosScreen');
+    navigation.navigate("ProdutosScreen"); // Verifique que "ProdutosScreen" existe no `routes.tsx`
   };
 
   const acessarComparar = () => {
-    navigation.navigate('telaComparar');
+    navigation.navigate("telaComparar"); // Verifique que "telaComparar" existe no `routes.tsx`
   };
 
   const renderScene = BottomNavigation.SceneMap({
