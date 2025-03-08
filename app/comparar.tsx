@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, Image } from "react-native";
-import { Appbar, Button, IconButton, List, Text, BottomNavigation } from "react-native-paper";
+import { View, StyleSheet, ScrollView } from "react-native";
+import { Appbar, Text, BottomNavigation } from "react-native-paper";
 import { useRouter } from "expo-router";
 
 const CompararPrecosScreen = () => {
   const router = useRouter();
 
   const voltarProduto = () => {
-    router.push("/produtos/add");
-  };
+    router.push("/ produtos/add");
+    };
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
@@ -31,7 +31,7 @@ const CompararPrecosScreen = () => {
     <View style={styles.container}>
       <Appbar.Header style={styles.appbar}>
         <Appbar.BackAction onPress={voltarProduto} />
-        <Appbar.Content title="Comparar Preços" />
+        <Appbar.Content title="Comparar Preços" titleStyle={styles.headerTitle} />
         <Appbar.Action icon="bell-outline" onPress={() => {}} />
       </Appbar.Header>
 
@@ -51,7 +51,15 @@ const CompararPrecosScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F9F3EE" },
-  appbar: { backgroundColor: "#F9F3EE", elevation: 0 },
+  appbar: {
+    backgroundColor: "#F9F3EE",
+    elevation: 0,
+    height: 56, // Ajustando para manter consistência com o Menu e Login
+    justifyContent: "space-between",
+  },
+  headerTitle: {
+    textAlign: "center",
+  },
   content: { padding: 20, alignItems: "center" },
   bottomNav: { backgroundColor: "#F9F3EE", elevation: 3 },
 });

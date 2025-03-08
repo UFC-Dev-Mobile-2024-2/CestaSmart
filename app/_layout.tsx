@@ -1,7 +1,17 @@
-import { Stack } from 'expo-router';
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { View, Text } from "react-native";
 
-export default function Layout() {
+export default function Index() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/onboarding"); // Redireciona para a tela de onboarding
+  }, []);
+
   return (
-    <Stack screenOptions={{ headerShown: false }} initialRouteName="onboarding" />
+    <View>
+      <Text>Carregando...</Text>
+    </View>
   );
 }
