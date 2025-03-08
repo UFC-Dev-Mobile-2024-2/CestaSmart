@@ -35,7 +35,7 @@ export default function HomeScreen() {
   );
 
   useEffect(() => {
-    getProdutos();
+    getProdutos(); 
   }, []);
 
   return (
