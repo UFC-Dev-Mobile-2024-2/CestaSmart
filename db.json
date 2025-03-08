@@ -1,0 +1,39 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Óleo de Soja xxx",
+      "preco": "R$ 9,99",
+      "mercado": "Nosso Atacarejo",
+      "imagem": ""
+    },
+    {
+      "id": 2,
+      "nome": "YoPRO",
+      "preco": "R$ 13,99",
+      "mercado": "Supermercado Pinheiro",
+      "imagem": ""
+    },
+    {
+      "id": 3,
+      "nome": "Molho de tomate",
+      "preco": "R$ 4,99",
+      "mercado": "Super São Geraldo",
+      "imagem": ""
+    },
+    {
+      "id": 4,
+      "nome": "Cafê",
+      "preco": "R$ 40,99",
+      "mercado": "Super São Geraldo",
+      "imagem": ""
+    },
+    {
+      "id": 5,
+      "nome": "Cafê 2",
+      "preco": "R$ 40,99",
+      "mercado": "Super São Geraldo",
+      "imagem": ""
+    }
+  ]
+}
