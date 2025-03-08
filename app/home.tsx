@@ -32,7 +32,6 @@ export default function HomeScreen() {
         <View style={styles.container}>
             {/* Conteúdo rolável */}
             <ScrollView style={styles.scrollContainer}>
-                <Header title="Página Inicial" />
                 <PesquisaBar search={search} setSearch={setSearch} />
                 <ParaVoce />
                 <CategoriasHome />

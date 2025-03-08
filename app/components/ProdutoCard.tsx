@@ -2,13 +2,10 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Divider, Chip } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 const ProdutoCard = ({ produto }: { produto: { id: number, imagem: any, nome: string, preco: string, mercado: string } }) => {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-      navigation.navigate('telaProdutoAdd', { produto });
-  };
+  const router = useRouter();
 
   return (
     <View key={produto.id} style={{
@@ -38,9 +35,11 @@ const ProdutoCard = ({ produto }: { produto: { id: number, imagem: any, nome: st
       </Chip>
 
       {/* Envolvendo o Text com TouchableOpacity */}
-      <TouchableOpacity onPress={handlePress}>
-        <Text style={{ fontSize: 16, fontWeight: 'bold', fontFamily: 'Inter' }}>{produto.nome}</Text>
-      </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push('/add')}>
+    <Text style={{ fontSize: 16, fontWeight: 'bold', fontFamily: 'Inter' }}>
+      {produto.nome}
+    </Text>
+  </TouchableOpacity>
 
       <Text style={{ fontSize: 16, color: '#231a16', fontWeight: 'bold', fontFamily: 'Inter' }}>{produto.preco}</Text>
       <Text style={{ fontSize: 12, color: '#555', fontFamily: 'Inter' }}>{produto.mercado}</Text>

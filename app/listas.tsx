@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Modal, TextInput, FlatList } from 'react-native';
 import { Text, List, IconButton, FAB, PaperProvider, Menu, Button } from 'react-native-paper';
 import MenuInferior from './components/MenuInferior';
+import { useRouter } from "expo-router";
 
 interface ListItem {
   id: string;
@@ -10,6 +11,8 @@ interface ListItem {
 }
 
 const App: React.FC = () => {
+    const router = useRouter();
+  
   const [lists, setLists] = useState<ListItem[]>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
@@ -57,7 +60,7 @@ const App: React.FC = () => {
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
-          <IconButton icon="arrow-left" size={24} iconColor="#000000" />
+          <IconButton onPress={() => router.back()} icon="arrow-left" size={24} iconColor="#000000" />
           <Text style={styles.headerTitle}>Listas</Text>
           <IconButton icon="bell-outline" size={24} iconColor="#8E4D2F" />
         </View>

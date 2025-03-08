@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type PesquisaBarProps = {
   search: string;
@@ -9,12 +10,24 @@ type PesquisaBarProps = {
 
 const PesquisaBar: React.FC<PesquisaBarProps> = ({ search, setSearch }) => {
   return (
-    <View style={{ marginTop: 10, marginBottom: 27, paddingHorizontal: 16 }}>
+    <View style={styles.container}>
       <Searchbar
-        placeholder="Pesquisar produto..."
-        onChangeText={setSearch} 
-        value={search}  
-        style={{ backgroundColor: '#f6e5de' }} 
+        placeholder="Verduras"
+        onChangeText={setSearch}
+        value={search}
+        style={styles.searchbar}
+        
+        // Ícone da esquerda (engrenagem)
+        icon={() => (
+          <MaterialCommunityIcons name="cog" size={24} color="#7A4E32" />
+        )}
+        onIconPress={() => console.log("Engrenagem pressionada")}
+
+        // Ícone da direita (lupa) - só aparece quando há texto, por padrão
+        clearIcon={() => (
+          <MaterialCommunityIcons name="magnify" size={24} color="#7A4E32" />
+        )}
+        onClearIconPress={() => console.log("Lupa pressionada")}
       />
     </View>
   );
@@ -22,3 +35,15 @@ const PesquisaBar: React.FC<PesquisaBarProps> = ({ search, setSearch }) => {
 
 export default PesquisaBar;
 
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 10,
+    marginBottom: 27,
+    paddingHorizontal: 16,
+  },
+  searchbar: {
+    backgroundColor: '#f6e5de',
+    borderRadius: 20,
+    elevation: 0, // remove sombra para ficar mais "flat"
+  },
+});

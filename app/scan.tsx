@@ -2,13 +2,16 @@ import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { Button, Appbar, Text } from 'react-native-paper';
 import MenuInferior from './components/MenuInferior';
+import { useRouter } from "expo-router";
 
 const ScannerScreen: React.FC = () => {
+    const router = useRouter();
+  
   return (
     <View style={styles.container}>
       {/* Appbar */}
       <Appbar.Header style={styles.appbar}>
-        <Appbar.BackAction onPress={() => {}} />
+        <Appbar.BackAction onPress={() => router.back()} />
         <Appbar.Content title="Scanner" titleStyle={styles.appbarTitle} />
         <Appbar.Action icon="bell-outline" onPress={() => {}} />
       </Appbar.Header>
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: 16,
-    marginTop: 5,
+    marginBottom: 70,
   },
   cancelButton: {
     borderColor: '#7A4E32',
