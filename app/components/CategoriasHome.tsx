@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -10,11 +10,27 @@ export default function CategoriasHome() {
   };
 
   // Definição das categorias com tipagem correta
-  const categories: { id: number; name: string; icon: keyof typeof Ionicons.glyphMap }[] = [
-    { id: 1, name: 'Alimentos', icon: 'fast-food' },
-    { id: 2, name: 'Bebidas', icon: 'wine' },
-    { id: 3, name: 'Limpeza', icon: 'brush' },
-    { id: 4, name: 'Higiene', icon: 'body' },
+  const categories: { id: number; name: string; image: any }[] = [
+    { 
+      id: 1, 
+      name: 'Alimentos', 
+      image: require('../../assets/images/Alimentos.png')  // Imagem local
+    },
+    { 
+      id: 2, 
+      name: 'Bebidas', 
+      image: require('../../assets/images/Bebidas.png')  // Imagem local
+    },
+    { 
+      id: 3, 
+      name: 'Limpeza', 
+      image: require('../../assets/images/Limpeza.png')  // Imagem local
+    },
+    { 
+      id: 4, 
+      name: 'Higiene', 
+      image: require('../../assets/images/Higiene.png')  // Imagem local
+    },
   ];
 
   return (
@@ -25,7 +41,10 @@ export default function CategoriasHome() {
         {categories.map((category) => (
           <View key={category.id} style={styles.categoryWrapper}>
             <View style={styles.categoryCard}>
-              <Ionicons name={category.icon} size={40} color="#333" />
+              {/* Exibindo a imagem dentro da box */}
+              <Image source={category.image} style={styles.categoryImage} />
+              {/* Ícone */}
+              <Ionicons name={category.icon} size={40} color="#333" style={styles.icon} />
             </View>
             <Text style={styles.categoryText}>{category.name}</Text>
           </View>
@@ -64,6 +83,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    position: 'relative', // Permite o ícone ser posicionado sobre a imagem
+    overflow: 'hidden',  // Garante que o conteúdo não ultrapasse a borda arredondada
+  },
+  categoryImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',  // A imagem preenche a caixa sem distorcer
+    position: 'absolute', // A imagem ficará por baixo do ícone
+  },
+  icon: {
+    zIndex: 1,  // Garante que o ícone ficará sobre a imagem
   },
   categoryText: {
     fontSize: 14,
