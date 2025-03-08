@@ -20,12 +20,12 @@ const ProdutoScreen = () => {
   ]);
 
   const handlePress = () => {
-  feature/login
     router.push("/produtos"); 
   };
 
   const acessarComparar = () => {
-    router.push("/comparar"); 
+    router.push("/comparar");
+  };
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -35,7 +35,6 @@ const ProdutoScreen = () => {
       ...checkedItems,
       [index]: !checkedItems[index],
     });
-  main
   };
 
   const handleAddToList = () => {
@@ -83,7 +82,7 @@ const ProdutoScreen = () => {
               <Text style={styles.title}>Óleo de Cozinha</Text>
               <Text style={styles.subtitle}>Soya</Text>
             </View>
-            <IconButton icon="plus-circle-outline" size={26} onPress={showModal} color="#000" />
+            <IconButton icon="plus-circle-outline" size={26} onPress={showModal} />
           </View>
 
           <Image
@@ -97,76 +96,13 @@ const ProdutoScreen = () => {
             </Chip>
             <Text style={styles.price}>R$ 9.99</Text>
             <View style={styles.linkContainer}>
-              <Icon source="magnify" size={18} color="#8E4D2F" />
+              <Icon source="magnify" size={18} />
               <Text onPress={acessarComparar} style={styles.link}>
                 Ver mais opções de preços
               </Text>
             </View>
           </View>
-
-          <View style={styles.buttonsContainer}>
-            <Button mode="outlined" style={styles.cancelButton} labelStyle={styles.cancelButtonText} onPress={() => {}}>
-              Cancelar
-            </Button>
-            <Button mode="contained" style={styles.addButton} labelStyle={styles.addButtonText} onPress={handleAddToCart}>
-              Adicionar à Cesta
-            </Button>
-          </View>
-
-          <Text style={styles.detailsTitle}>Detalhes</Text>
-          <Text style={styles.detailsText}>
-            Óleo de Soja Soya 900ml – puro, leve e ideal para frituras e receitas do dia a dia.
-          </Text>
         </ScrollView>
-
-        <Portal>
-          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.modalContainer}>
-            <Text style={styles.modalTitle}>Adicionar</Text>
-            <List.Section>
-              {[...Array(3)].map((_, index) => (
-                <List.Item
-                  key={index}
-                  title="List item"
-                  left={() => <Avatar.Text size={36} label="A" style={styles.avatar} />}
-                  right={() => (
-                    <Checkbox
-                      status={checkedItems[index] ? "checked" : "unchecked"}
-                      onPress={() => handleCheckboxToggle(index)}
-                      color="#8B5D33" 
-                    />
-                  )}
-                  titleStyle={styles.listItemText}
-                />
-              ))}
-            </List.Section>
-            <View style={styles.buttonContainer}>
-              <Button mode="outlined" textColor="#8E4D2F" style={styles.cancelButton} onPress={hideModal}>
-                Cancelar
-              </Button>
-              <Button mode="contained" textColor="#FFF" style={styles.addButton} onPress={handleAddToList}>
-                Adicionar à Lista
-              </Button>
-            </View>
-          </Modal>
-        </Portal>
-
-        <Portal>
-          <Dialog visible={dialogVisible} onDismiss={hideDialog}>
-            <Dialog.Content>
-              <Text variant="bodyMedium">{dialogMessage}</Text>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={hideDialog}>OK</Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-
-        <BottomNavigation
-          navigationState={{ index, routes }}
-          onIndexChange={setIndex}
-          renderScene={renderScene}
-          barStyle={styles.bottomNav}
-        />
       </View>
     </PaperProvider>
   );
@@ -192,8 +128,9 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     width: "100%",
-    marginBottom: 20,
+    paddingVertical: 10,
   },
   title: {
     fontSize: 20,
@@ -238,74 +175,7 @@ const styles = StyleSheet.create({
   link: {
     color: "#8E4D2F",
     marginLeft: 5,
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    marginTop: 15,
-  },
-  cancelButton: {
-    flex: 1,
-    marginRight: 15,
-    borderColor: "#8E4D2F",
-    borderWidth: 1,
-  },
-  cancelButtonText: {
-    color: "#8E4D2F",
-  },
-  addButton: {
-    flex: 1,
-    backgroundColor: "#8E4D2F",
-    paddingHorizontal: -20,
-  },
-  addButtonText: {
-    fontSize: 10,
-    color: "#FFFFFF",
-  },
-  detailsTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#4E342E",
-    marginTop: 20,
-    alignSelf: "flex-start",
-  },
-  detailsText: {
-    fontSize: 16,
-    color: "#6D4C41",
-    marginTop: 5,
-    alignSelf: "flex-start",
-  },
-  bottomNav: {
-    backgroundColor: "#F9F3EE",
-    elevation: 3,
-  },
-  modalContainer: {
-    backgroundColor: "#FFEFE7",
-    padding: 20,
-    borderRadius: 12,
-    width: "90%",
-    alignSelf: "center",
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 16,
-    textAlign: "center",
-    color: "#2D1E15",
-  },
-  listItemText: {
-    fontSize: 16,
-    color: "#2D1E15",
-  },
-  avatar: {
-    backgroundColor: "#FAD4C0",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 16,
-  },
+  }
 });
 
 export default ProdutoScreen;
