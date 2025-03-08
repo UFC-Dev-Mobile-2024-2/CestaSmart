@@ -1,0 +1,21 @@
+{
+    "lists": [
+      {
+        "id": 1,
+        "name": "Bolo",
+        "items": [
+          { "id": 1, "name": "Cenouras", "done": false },
+          { "id": 2, "name": "Maçãs", "done": true }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Compras do mês",
+        "items": [
+          { "id": 1, "name": "Estudar React Native", "done": false },
+          { "id": 2, "name": "Enviar relatório", "done": false }
+        ]
+      }
+    ]
+  }
+  
