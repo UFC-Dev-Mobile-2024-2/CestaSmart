@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
-import Header from './components/Header';
+import { Appbar } from "react-native-paper";
+import { View, ScrollView, StyleSheet } from 'react-native';
 import Categoria from './components/Categoria';
 import PesquisaBar from './components/PesquisaBar';
 import ProdutoCard from './components/ProdutoCard';
@@ -21,7 +21,11 @@ const ProdutosScreen = () => {
 
   return (
     <View style={{ flex: 1, padding: 16, backgroundColor: '#fff8f6' }}>
-      <Header />
+      <Appbar.Header style={styles.appbar}>
+        <Appbar.BackAction />
+        <Appbar.Content style={{ alignItems: 'center' }} title="Produtos" />
+        <Appbar.Action icon="bell-outline" onPress={() => {}} />
+      </Appbar.Header>
       <Categoria />
       <PesquisaBar search={search} setSearch={setSearch} />
       <ScrollView>
@@ -35,6 +39,13 @@ const ProdutosScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#F9F3EE" },
+  appbar: { backgroundColor: "#F9F3EE", elevation: 0 },
+  content: { padding: 20, alignItems: "center" },
+  bottomNav: { backgroundColor: "#F9F3EE", elevation: 3 },
+});
 
 export default ProdutosScreen;
 
