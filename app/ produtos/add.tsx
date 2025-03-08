@@ -16,11 +16,11 @@ const ProdutoScreen = () => {
   ]);
 
   const handlePress = () => {
-    router.push("produtos"); // Substitui navigation.navigate("ProdutosScreen")
+    router.push("/produtos"); 
   };
 
   const acessarComparar = () => {
-    router.push("comparar"); // Substitui navigation.navigate("telaComparar")
+    router.push("/comparar"); 
   };
 
   const renderScene = BottomNavigation.SceneMap({

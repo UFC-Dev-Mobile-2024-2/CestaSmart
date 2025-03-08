@@ -2,7 +2,11 @@ import * as React from "react";
 import { Appbar } from "react-native-paper";
 import { useRouter, useSegments } from "expo-router";
 
-const MyComponent = () => {
+type HeaderProps = {
+  title?: string;
+};
+
+const MyComponent: React.FC<HeaderProps> = ({ title }) => {
   const router = useRouter();
   const segments = useSegments();
 
@@ -14,6 +18,7 @@ const MyComponent = () => {
 
   // Verificar segmentos corretamente
   const getTitle = () => {
+    if (title) return title;
     const currentRoute = segments.join("/");
     console.log("Rota atual:", currentRoute);
 
