@@ -1,142 +1,139 @@
-import React from 'react';
-import { List } from 'react-native-paper';
+import React, { useState } from 'react';
+import { ScrollView, View, StyleSheet, Pressable } from 'react-native';
+import { Appbar, Text } from 'react-native-paper';
 import MenuInferior from './components/MenuInferior';
+import { useRouter } from 'expo-router';
 
-function App() {
+export default function ProfileScreen() {
+  const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
+
   return (
-    <>
-      <div className="container">
-        <div className="header">
-          <h1 className="title">Configurações</h1>
-        </div>
+    <View style={styles.container}>
+      <Appbar.Header style={{ backgroundColor: '#ffffff' }}>
+        <Appbar.BackAction onPress={() => router.back()} color="#231A16" />
+        <Appbar.Content title="Configurações" titleStyle={{ textAlign: 'center', color: '#231A16' }} />
+        <Appbar.Action icon="bell-outline" color="#231A16" />
+      </Appbar.Header>
 
-        <div className="profile">
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.profile}>
           <img
             src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&h=200&auto=format&fit=crop"
             alt="Profile"
-            className="profile-img"
+            style={styles.profileImg}
           />
-          <h2 className="profile-name">Evelyn Cardoso</h2>
-          <a href="mailto:evecardoso@gmail.com" className="profile-email">
+          <Text variant="titleMedium" style={styles.profileName}>Evelyn Cardoso</Text>
+          <a href="mailto:evecardoso@gmail.com" style={styles.profileEmail}>
             evecardoso@gmail.com
           </a>
-        </div>
+        </View>
 
-        <div className="economia">
-          <h3 className="economia-title">Economia</h3>
-          <div className="economia-box">
-            <span className="economia-text">👏 Parabéns você economizou R$ 13,53! 🎉</span>
-          </div>
-        </div>
+        <View style={styles.economia}>
+          <Text variant="titleMedium" style={styles.economiaTitle}>Economia</Text>
+          <View style={styles.economiaBox}>
+            <Text variant="bodyMedium" style={styles.economiaText}>👏 Parabéns você economizou R$ 13,53! 🎉</Text>
+          </View>
+        </View>
 
-        <List.Section>
-          <List.Item
-            title="Dados da conta"
-            left={() => <List.Icon icon="account" />}
-          />
-          <List.Item
-            title="Histórico de compras"
-            left={() => <List.Icon icon="history" />}
-          />
-          <List.Item
-            title="Ajuda e suporte"
-            left={() => <List.Icon icon="help-circle" />}
-          />
-          <List.Item
-            title="Sair da conta"
-            left={() => <List.Icon icon="logout" color="red" />}
-            titleStyle={{ color: 'red' }}
-          />
-        </List.Section>
-      </div>
+        <View style={styles.menu}>
+          <View style={styles.menuItem}>
+            <Text variant="bodyMedium" style={styles.menuText}>Dados da conta</Text>
+          </View>
+          <View style={styles.menuItem}>
+            <Text variant="bodyMedium" style={styles.menuText}>Histórico de compras</Text>
+          </View>
+          <View style={styles.menuItem}>
+            <Text variant="bodyMedium" style={styles.menuText}>Ajuda e suporte</Text>
+          </View>
+          <Pressable
+            style={[styles.menuItem, styles.logout, isHovered && styles.logoutHover]}
+            onPressIn={() => setIsHovered(true)}
+            onPressOut={() => setIsHovered(false)}
+          >
+            <Text variant="bodyMedium" style={styles.logoutText}>Sair da conta</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
 
       <MenuInferior />
-
-      <style>
-        {`
-          .container {
-            min-height: 100vh;
-            background-color: #FFF5F5;
-            padding: 24px;
-          }
-
-          .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-          }
-
-          .title {
-            font-size: 1.25rem;
-            font-weight: 600;
-          }
-
-          .profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 32px;
-          }
-
-          .profile-img {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            margin-bottom: 12px;
-          }
-
-          .profile-name {
-            font-size: 1.125rem;
-            font-weight: 600;
-          }
-
-          .profile-email {
-            font-size: 0.875rem;
-            color: gray;
-            text-decoration: underline;
-          }
-
-          .economia {
-            margin-bottom: 24px;
-          }
-
-          .economia-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-          }
-
-          .economia-box {
-            background-color: white;
-            border-radius: 12px;
-            padding: 16px;
-          }
-
-          .economia-text {
-            font-size: 0.875rem;
-          }
-
-          .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-          }
-
-          .menu-item {
-            padding: 16px;
-            background-color: white;
-            border-radius: 12px;
-            font-size: 1rem;
-          }
-
-          .logout {
-            color: red;
-          }
-        `}
-      </style>
-    </>
+    </View>
   );
 }
 
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  profile: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  profileImg: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    marginBottom: 12,
+  },
+  profileName: {
+    fontWeight: 'bold',
+    color: '#4F2E1D',
+  },
+  profileEmail: {
+    fontSize: 14,
+    color: '#885A44',
+    textDecorationLine: 'underline',
+    fontFamily: 'Arial',
+  },
+  economia: {
+    marginBottom: 24,
+    paddingHorizontal: 16,
+  },
+  economiaTitle: {
+    fontWeight: 'bold',
+    color: '#4F2E1D',
+    marginBottom: 12,
+  },
+  economiaBox: {
+    backgroundColor: '#FFF5F5',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 2,
+    borderColor: '#FFD700',
+  },
+  economiaText: {
+    fontSize: 14,
+    color: '#4F2E1D',
+  },
+  menu: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 12,
+    paddingHorizontal: 16,
+  },
+  menuItem: {
+    backgroundColor: '#FFF5F5',
+    borderRadius: 12,
+    padding: 16,
+  },
+  menuText: {
+    fontSize: 16,
+    color: '#4F2E1D',
+  },
+  logout: {
+    borderColor: 'red',
+    borderWidth: 1,
+  },
+  logoutText: {
+    color: 'red',
+  },
+  logoutHover: {
+    backgroundColor: '#ffe6e6',
+  },
+});
