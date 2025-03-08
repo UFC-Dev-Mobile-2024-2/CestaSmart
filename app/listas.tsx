@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Modal, TextInput, FlatList } from 'react-native';
 import { Text, List, IconButton, FAB, PaperProvider, Menu, Button } from 'react-native-paper';
+import MenuInferior from './components/MenuInferior';
 
 interface ListItem {
   id: string;
@@ -117,6 +118,8 @@ const App: React.FC = () => {
           onPress={() => setModalVisible(true)}
         />
 
+        <MenuInferior/>
+
         {/* Modal de Criação de Lista */}
         <Modal visible={modalVisible} onRequestClose={() => setModalVisible(false)} transparent>
           <View style={styles.modalContainer}>
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
     right: 16,
-    bottom: 16,
+    bottom: 100,
     backgroundColor: '#E5CFC3',
   },
   modalContainer: {
