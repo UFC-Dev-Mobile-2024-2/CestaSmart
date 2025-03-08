@@ -1,11 +1,12 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
 
 export default function ParaVoce() {
   const forYouItems = Array(5).fill(null);
 
   return (
     <>
-      <Text style={styles.sectionTitle}>Para você!</Text>
+      <Text variant="headlineSmall" style={styles.sectionTitle}>Para você!</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.container}>
         {forYouItems.map((_, index) => (
           <View key={index} style={styles.card} />
@@ -17,8 +18,6 @@ export default function ParaVoce() {
 
 const styles = StyleSheet.create({
   sectionTitle: {
-    fontFamily: 'Inter',
-    fontSize: 20,
     marginBottom: 16,
     marginLeft: 16,
     color: '#333',

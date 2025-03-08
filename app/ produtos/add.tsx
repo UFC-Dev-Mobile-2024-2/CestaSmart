@@ -20,12 +20,12 @@ const ProdutoScreen = () => {
   ]);
 
   const handlePress = () => {
-    router.push("produtos");
+  feature/login
+    router.push("/produtos"); 
   };
 
   const acessarComparar = () => {
-    router.push("comparar");
-  };
+    router.push("/comparar"); 
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -35,6 +35,7 @@ const ProdutoScreen = () => {
       ...checkedItems,
       [index]: !checkedItems[index],
     });
+  main
   };
 
   const handleAddToList = () => {

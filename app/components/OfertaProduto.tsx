@@ -1,32 +1,33 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
+import { Text } from 'react-native-paper';
 
 export default function OfertasProdutos() {
   return (
     <View style={styles.offersContainer}>
       <View style={styles.offerCard}>
         <View style={styles.offerBadge}>
-          <Text style={styles.offerBadgeText}>Menor preço</Text>
+          <Text variant="labelSmall" style={[styles.offerBadgeText, styles.interFont]}>Menor preço</Text>
         </View>
         <Image
           source={{ uri: 'https://images.unsplash.com/photo-1620705867515-2cd08e50720c?w=200' }}
           style={styles.productImage}
         />
-        <Text style={styles.productName}>Óleo de Soja</Text>
-        <Text style={styles.productPrice}>R$ 9,99</Text>
-        <Text style={styles.storeName}>Nosso Atacarejo</Text>
+        <Text variant="titleMedium" style={[styles.productName, styles.interFont]}>Óleo de Soja</Text>
+        <Text variant="titleLarge" style={[styles.productPrice, styles.interFont]}>R$ 9,99</Text>
+        <Text variant="bodySmall" style={[styles.storeName, styles.interFont]}>Nosso Atacarejo</Text>
       </View>
 
       <View style={styles.offerCard}>
         <View style={styles.offerBadge}>
-          <Text style={styles.offerBadgeText}>Menor preço</Text>
+          <Text variant="labelSmall" style={[styles.offerBadgeText, styles.interFont]}>Menor preço</Text>
         </View>
         <Image
           source={{ uri: 'https://images.unsplash.com/photo-1553530979-7ee52a2670c4?w=200' }}
           style={styles.productImage}
         />
-        <Text style={styles.productName}>YoPRO</Text>
-        <Text style={styles.productPrice}>R$ 13,99</Text>
-        <Text style={styles.storeName}>Supermercado Pinheiro</Text>
+        <Text variant="titleMedium" style={[styles.productName, styles.interFont]}>YoPRO</Text>
+        <Text variant="titleLarge" style={[styles.productPrice, styles.interFont]}>R$ 13,99</Text>
+        <Text variant="bodySmall" style={[styles.storeName, styles.interFont]}>Supermercado Pinheiro</Text>
       </View>
     </View>
   );
@@ -58,7 +59,6 @@ const styles = StyleSheet.create({
   },
   offerBadgeText: {
     color: '#fff',
-    fontSize: 12,
     fontWeight: 'bold',
   },
   productImage: {
@@ -68,19 +68,18 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   productName: {
-    fontSize: 16,
-    fontWeight: 'bold',
     marginBottom: 4,
     color: '#333',
   },
   productPrice: {
-    fontSize: 18,
     color: '#FF4444',
     fontWeight: 'bold',
     marginBottom: 4,
   },
   storeName: {
-    fontSize: 12,
     color: '#666',
+  },
+  interFont: {
+    fontFamily: 'Inter',
   },
 });
