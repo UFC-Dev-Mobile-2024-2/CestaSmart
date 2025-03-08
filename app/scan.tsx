@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { Button, Appbar, Text } from 'react-native-paper';
+import MenuInferior from './components/MenuInferior';
 
 const ScannerScreen: React.FC = () => {
   return (
@@ -34,6 +35,8 @@ const ScannerScreen: React.FC = () => {
           Avançar
         </Button>
       </View>
+
+      <MenuInferior/>
     </View>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuInferior from './components/MenuInferior';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         </div>
       </div>
 
+    <MenuInferior/>
 
       <style>
         {`

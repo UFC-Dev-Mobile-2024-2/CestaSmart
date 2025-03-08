@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, SafeAreaView, FlatList, Image } from 'react-native';
 import { Appbar, Checkbox, IconButton, Text, Button, Divider } from 'react-native-paper';
+import MenuInferior from './components/MenuInferior';
 
 const data = [
   {
@@ -97,10 +98,12 @@ export default function CestaScreen() {
       />
       
       {/* Botões */}
-      <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 16 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 16, marginBottom: 100 }}>
         <Button mode="outlined" style={{ borderColor: '#885A44', marginRight: 8 }} textColor="#885A44">Voltar</Button>
         <Button mode="contained" style={{ backgroundColor: '#885A44' }} textColor="#FFFFFF">Registrar Compra</Button>
       </View>
+                  <MenuInferior />
+      
     </SafeAreaView>
   );
 }

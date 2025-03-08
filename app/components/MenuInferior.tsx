@@ -1,39 +1,58 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-const MenuInferior = () => (
-  <View style={styles.container}>
-    <View style={styles.menuItem}>
-      <MaterialIcons name="home" size={28} color="#000" />
-      <Text style={styles.menuText}>Início</Text>
-    </View>
+const MenuInferior = () => {
+  const router = useRouter();
 
-    <View style={styles.menuItem}>
-      <MaterialIcons name="shopping-basket" size={28} color="#000" />
-      <Text style={styles.menuText}>Carrinho</Text>
-    </View>
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity 
+        style={styles.menuItem} 
+        onPress={() => router.push('/home')}  // Substitua '/inicial' pelo caminho da tela de Início
+      >
+        <MaterialIcons name="home" size={28} color="#000" />
+        <Text style={styles.menuText}>Início</Text>
+      </TouchableOpacity>
 
-    <View style={styles.menuItem}>
-      <MaterialIcons name="qr-code-scanner" size={28} color="#000" />
-      <Text style={styles.menuText}>QR Code</Text>
-    </View>
+      <TouchableOpacity 
+        style={styles.menuItem} 
+        onPress={() => router.push('/cesta')}  // Substitua '/carrinho' pelo caminho da tela do Carrinho
+      >
+        <MaterialIcons name="shopping-basket" size={28} color="#000" />
+        <Text style={styles.menuText}>Carrinho</Text>
+      </TouchableOpacity>
 
-    <View style={styles.menuItem}>
-      <MaterialIcons name="list" size={28} color="#000" />
-      <Text style={styles.menuText}>Lista</Text>
-    </View>
+      <TouchableOpacity 
+        style={styles.menuItem} 
+        onPress={() => router.push('/scan')}  // Substitua '/qrcode' pelo caminho da tela de QR Code
+      >
+        <MaterialIcons name="qr-code-scanner" size={28} color="#000" />
+        <Text style={styles.menuText}>QR Code</Text>
+      </TouchableOpacity>
 
-    <View style={styles.menuItem}>
-      <MaterialIcons name="person" size={28} color="#000" />
-      <Text style={styles.menuText}>Perfil</Text>
+      <TouchableOpacity 
+        style={styles.menuItem} 
+        onPress={() => router.push('/listas')}  // Substitua '/lista' pelo caminho da tela da Lista
+      >
+        <MaterialIcons name="list" size={28} color="#000" />
+        <Text style={styles.menuText}>Lista</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity 
+        style={styles.menuItem} 
+        onPress={() => router.push('/perfil')}  // Substitua '/perfil' pelo caminho da tela do Perfil
+      >
+        <MaterialIcons name="person" size={28} color="#000" />
+        <Text style={styles.menuText}>Perfil</Text>
+      </TouchableOpacity>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    // Essa propriedade garante que o menu permaneça fixo na parte inferior da tela, independentemente da rolagem.
     position: 'absolute',
     bottom: 0,
     left: 0,
