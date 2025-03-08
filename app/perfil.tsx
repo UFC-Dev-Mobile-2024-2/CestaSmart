@@ -1,16 +1,15 @@
 import React from 'react';
+import { List } from 'react-native-paper';
 import MenuInferior from './components/MenuInferior';
 
 function App() {
   return (
     <>
       <div className="container">
-        {/* Header */}
         <div className="header">
           <h1 className="title">Configurações</h1>
         </div>
 
-        {/* Profile Section */}
         <div className="profile">
           <img
             src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&h=200&auto=format&fit=crop"
@@ -23,7 +22,6 @@ function App() {
           </a>
         </div>
 
-        {/* Economia Section */}
         <div className="economia">
           <h3 className="economia-title">Economia</h3>
           <div className="economia-box">
@@ -31,16 +29,28 @@ function App() {
           </div>
         </div>
 
-        {/* Menu Items */}
-        <div className="menu">
-          <div className="menu-item">Dados da conta</div>
-          <div className="menu-item">Histórico de compras</div>
-          <div className="menu-item">Ajuda e suporte</div>
-          <div className="menu-item logout">Sair da conta</div>
-        </div>
+        <List.Section>
+          <List.Item
+            title="Dados da conta"
+            left={() => <List.Icon icon="account" />}
+          />
+          <List.Item
+            title="Histórico de compras"
+            left={() => <List.Icon icon="history" />}
+          />
+          <List.Item
+            title="Ajuda e suporte"
+            left={() => <List.Icon icon="help-circle" />}
+          />
+          <List.Item
+            title="Sair da conta"
+            left={() => <List.Icon icon="logout" color="red" />}
+            titleStyle={{ color: 'red' }}
+          />
+        </List.Section>
       </div>
 
-    <MenuInferior/>
+      <MenuInferior />
 
       <style>
         {`
