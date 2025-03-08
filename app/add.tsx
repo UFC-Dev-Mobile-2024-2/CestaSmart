@@ -96,13 +96,92 @@ const ProdutoScreen = () => {
             </Chip>
             <Text style={styles.price}>R$ 9.99</Text>
             <View style={styles.linkContainer}>
-              <Icon source="magnify" size={18} />
+              <Icon source="magnify" size={18} color="#8E4D2F" /> {/* Cor do ícone da lupa */}
               <Text onPress={acessarComparar} style={styles.link}>
                 Ver mais opções de preços
               </Text>
             </View>
           </View>
+
+          <View style={styles.buttonContainer}>
+            <Button
+              mode="contained"
+              onPress={handleAddToCart}
+              style={styles.button}
+              labelStyle={styles.buttonLabel}
+            >
+              Adicionar à Cesta
+            </Button>
+          </View>
+
+          <View style={styles.detailsContainer}>
+            <Text style={styles.detailsTitle}>Detalhes do Produto</Text>
+            <Text style={styles.detailsText}>
+              Óleo de soja Soya 900ml. Ideal para frituras, cozimentos e preparo de alimentos em geral.
+            </Text>
+          </View>
         </ScrollView>
+
+        <Portal>
+          <Modal
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={styles.modalContainer}
+          >
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Adicionar à Lista</Text>
+              <List.Section>
+                <List.Item
+                  title="Lista de Compras"
+                  left={() => (
+                    <Checkbox
+                      status={checkedItems[0] ? "checked" : "unchecked"}
+                      onPress={() => handleCheckboxToggle(0)}
+                      color="#8E4D2F" // Cor do checkbox
+                    />
+                  )}
+                  titleStyle={styles.listItemTitle} // Estilo do texto da lista
+                />
+                <List.Item
+                  title="Lista de Desejos"
+                  left={() => (
+                    <Checkbox
+                      status={checkedItems[1] ? "checked" : "unchecked"}
+                      onPress={() => handleCheckboxToggle(1)}
+                      color="#8E4D2F" // Cor do checkbox
+                    />
+                  )}
+                  titleStyle={styles.listItemTitle} // Estilo do texto da lista
+                />
+              </List.Section>
+              <View style={styles.modalButtons}>
+                <Button
+                  onPress={hideModal}
+                  style={[styles.modalButton, styles.modalButtonCancel]}
+                  labelStyle={styles.modalButtonCancelLabel} // Cor do texto do botão Cancelar
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  onPress={handleAddToList}
+                  style={[styles.modalButton, styles.modalButtonAdd]}
+                  labelStyle={styles.modalButtonLabel}
+                >
+                  Adicionar
+                </Button>
+              </View>
+            </View>
+          </Modal>
+        </Portal>
+
+        <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+          <Dialog.Content>
+            <Text>{dialogMessage}</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={hideDialog}>OK</Button>
+          </Dialog.Actions>
+        </Dialog>
       </View>
     </PaperProvider>
   );
@@ -175,7 +254,75 @@ const styles = StyleSheet.create({
   link: {
     color: "#8E4D2F",
     marginLeft: 5,
-  }
+  },
+  buttonContainer: {
+    width: "100%",
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: "#8E4D2F",
+  },
+  buttonLabel: {
+    color: "#FFF", // Texto branco no botão
+  },
+  detailsContainer: {
+    alignSelf: "flex-start",
+    width: "100%",
+    marginTop: 20,
+  },
+  detailsTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#4E342E",
+  },
+  detailsText: {
+    fontSize: 14,
+    color: "#795548",
+    marginTop: 10,
+  },
+  modalContainer: {
+    backgroundColor: "#F9F3EE",
+    padding: 20,
+    margin: 20,
+    borderRadius: 10,
+  },
+  modalContent: {
+    width: '100%',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: "#4E342E",
+  },
+  listItemTitle: {
+    color: "#4E342E", // Cor do texto da lista
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  modalButton: {
+    flex: 1,
+    marginHorizontal: 10,
+    borderRadius: 5,
+  },
+  modalButtonCancel: {
+    backgroundColor: "transparent", // Fundo transparente para o botão Cancelar
+    borderWidth: 1,
+    borderColor: "#8E4D2F", // Borda marrom
+  },
+  modalButtonCancelLabel: {
+    color: "#8E4D2F", // Texto marrom para o botão Cancelar
+  },
+  modalButtonAdd: {
+    backgroundColor: "#8E4D2F", // Cor de fundo do botão Adicionar
+  },
+  modalButtonLabel: {
+    color: "#FFF", // Texto branco nos botões do modal
+  },
 });
 
 export default ProdutoScreen;
