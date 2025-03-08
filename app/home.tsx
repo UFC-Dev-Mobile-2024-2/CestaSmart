@@ -29,23 +29,26 @@ export default function HomeScreen() {
     }, []);
 
     return (
-        <ScrollView style={styles.container}>
-            <Header title="Página Inicial" />
-            <PesquisaBar search={search} setSearch={setSearch} />
-            <ParaVoce />
-            <CategoriasHome />
+        <View style={styles.container}>
+            {/* Conteúdo rolável */}
+            <ScrollView style={styles.scrollContainer}>
+                <Header title="Página Inicial" />
+                <PesquisaBar search={search} setSearch={setSearch} />
+                <ParaVoce />
+                <CategoriasHome />
 
-            <Text variant="headlineSmall" style={styles.sectionTitle}>Ofertas</Text>
-            <ScrollView style={{ marginTop: 20, paddingHorizontal: 16 }}>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                    {produtosFiltrados.map((produto) => (
-                        <ProdutoCard key={produto.id} produto={produto} />
-                    ))}
-                </View>
+                <Text variant="headlineSmall" style={styles.sectionTitle}>Ofertas</Text>
+                <ScrollView style={{ marginTop: 20, paddingHorizontal: 16 }}>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                        {produtosFiltrados.map((produto) => (
+                            <ProdutoCard key={produto.id} produto={produto} />
+                        ))}
+                    </View>
+                </ScrollView>
             </ScrollView>
 
             <MenuInferior />
-        </ScrollView>
+        </View>
     );
 }
 
@@ -53,6 +56,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff8f6',
+    },
+    scrollContainer: {
+        flex: 1, // Ocupa todo o espaço disponível, exceto o espaço do MenuInferior
     },
     sectionTitle: {
         marginTop: 20,
