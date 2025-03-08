@@ -1,20 +1,39 @@
 {
-    "produtos": [
-      {
-        "name": "Óleo de soja",
-        "marca": "Soya",
-        "valor": 9.99,
-        "descricao": "Óleo de Soja Soya 900ml – puro, leve e ideal para frituras e receitas do dia a dia.",
-        "imagem": "https://superprix.vteximg.com.br/arquivos/ids/176449-600-600/Oleo-de-Soja-Soya-900ml.png?v=636470371263970000",
-        "id": "1"
-      },
-      {
-        "name": "name 2",
-        "marca": "marca 2",
-        "valor": 20,
-        "descricao": "descricao 2",
-        "imagem": "imagem 2",
-        "id": "2"
-      }
-    ]
-  }
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Óleo de Soja xxx",
+      "preco": "R$ 9,99",
+      "mercado": "Nosso Atacarejo",
+      "imagem": ""
+    },
+    {
+      "id": 2,
+      "nome": "YoPRO",
+      "preco": "R$ 13,99",
+      "mercado": "Supermercado Pinheiro",
+      "imagem": ""
+    },
+    {
+      "id": 3,
+      "nome": "Molho de tomate",
+      "preco": "R$ 4,99",
+      "mercado": "Super São Geraldo",
+      "imagem": ""
+    },
+    {
+      "id": 4,
+      "nome": "Cafê",
+      "preco": "R$ 40,99",
+      "mercado": "Super São Geraldo",
+      "imagem": ""
+    },
+    {
+      "id": 5,
+      "nome": "Cafê 2",
+      "preco": "R$ 40,99",
+      "mercado": "Super São Geraldo",
+      "imagem": ""
+    }
+  ]
+}
