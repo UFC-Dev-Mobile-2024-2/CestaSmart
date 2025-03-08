@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, SafeAreaView, FlatList, Image } from 'react-native';
 import { Appbar, Checkbox, IconButton, Text, Button, Divider } from 'react-native-paper';
 import MenuInferior from './components/MenuInferior';
+import { useRouter } from "expo-router";
 
 const data = [
   {
@@ -24,6 +25,9 @@ const data = [
 ];
 
 export default function CestaScreen() {
+
+      const router = useRouter();
+  
   const [items, setItems] = useState(data);
 
   const toggleStoreCheck = (id: string) => {
@@ -64,7 +68,8 @@ export default function CestaScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff' }}>
       {/* Cabeçalho */}
       <Appbar.Header style={{ backgroundColor: '#ffffff'}}>
-        <Appbar.BackAction color="#231A16" />
+        <Appbar.BackAction onPress={() => router.back()} color="#231A16" />
+        
         <Appbar.Content title="Cesta" titleStyle={{ textAlign: 'center', color: '#231A16' }} />
         <Appbar.Action icon="bell-outline" color="#231A16" />
       </Appbar.Header>

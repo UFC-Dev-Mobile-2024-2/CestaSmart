@@ -5,8 +5,11 @@ import Categoria from './components/Categoria';
 import PesquisaBar from './components/PesquisaBar';
 import ProdutoCard from './components/ProdutoCard';
 import MenuInferior from './components/MenuInferior';
+import { useRouter } from "expo-router";
 
 const ProdutosScreen = () => {
+  const router = useRouter();
+  
   const [search, setSearch] = useState('');
 
   const produtos = [
@@ -22,7 +25,7 @@ const ProdutosScreen = () => {
   return (
     <View style={{ flex: 1, padding: 16, backgroundColor: '#fff8f6' }}>
       <Appbar.Header style={styles.appbar}>
-        <Appbar.BackAction />
+        <Appbar.BackAction  onPress={() => router.push('/home')}/>
         <Appbar.Content style={{ alignItems: 'center' }} title="Produtos" />
         <Appbar.Action icon="bell-outline" onPress={() => {}} />
       </Appbar.Header>
