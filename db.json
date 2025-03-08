@@ -1,0 +1,20 @@
+{
+    "produtos": [
+      {
+        "name": "Óleo de soja",
+        "marca": "Soya",
+        "valor": 9.99,
+        "descricao": "Óleo de Soja Soya 900ml – puro, leve e ideal para frituras e receitas do dia a dia.",
+        "imagem": "https://superprix.vteximg.com.br/arquivos/ids/176449-600-600/Oleo-de-Soja-Soya-900ml.png?v=636470371263970000",
+        "id": "1"
+      },
+      {
+        "name": "name 2",
+        "marca": "marca 2",
+        "valor": 20,
+        "descricao": "descricao 2",
+        "imagem": "imagem 2",
+        "id": "2"
+      }
+    ]
+  }

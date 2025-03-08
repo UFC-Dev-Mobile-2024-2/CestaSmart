@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { Text } from 'react-native-paper';
 import Header from './components/Header';
 import ParaVoce from './components/ParaVoce';
-import OfertaProduto from './components/OfertaProduto';
 import ProdutoCard from './components/ProdutoCard';
 import MenuInferior from './components/MenuInferior';
 import PesquisaBar from './components/PesquisaBar';
@@ -13,37 +12,46 @@ import { useRouter } from 'expo-router';
 export default function HomeScreen() {
     const router = useRouter();
     const [search, setSearch] = useState('');
+    const [produtos, setProdutos] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const produtos = [
-        { id: 1, nome: 'Óleo de Soja', preco: 'R$ 9,99', mercado: 'Nosso Atacarejo', imagem: require('../assets/images/oleo.webp') },
-        { id: 2, nome: 'YoPRO', preco: 'R$ 13,99', mercado: 'Supermercado Pinheiro', imagem: require('../assets/images/yopro.png') },
-        { id: 3, nome: 'Molho de tomate', preco: 'R$ 4,99', mercado: 'Super São Geraldo', imagem: require('../assets/images/molho.png') },
-    ];
+    useEffect(() => {
+        fetch("http://localhost:3001/produtos")
+            .then((res) => res.json())
+            .then((data) => {
+                setProdutos(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar produtos:", error);
+                setLoading(false);
+            });
+    }, []);
 
     const produtosFiltrados = produtos.filter((produto) =>
-      produto.nome.toLowerCase().includes(search.toLowerCase())
+        produto.name.toLowerCase().includes(search.toLowerCase())
     );
-    
-    useEffect(() => {
-        console.log("Produtos carregados:", produtos);
-    }, []);
 
     return (
         <View style={styles.container}>
-            {/* Conteúdo rolável */}
             <ScrollView style={styles.scrollContainer}>
                 <PesquisaBar search={search} setSearch={setSearch} />
                 <ParaVoce />
                 <CategoriasHome />
 
                 <Text variant="headlineSmall" style={styles.sectionTitle}>Ofertas</Text>
-                <ScrollView style={{ marginTop: 20, paddingHorizontal: 16 }}>
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                        {produtosFiltrados.map((produto) => (
-                            <ProdutoCard key={produto.id} produto={produto} />
-                        ))}
-                    </View>
-                </ScrollView>
+
+                {loading ? (
+                    <ActivityIndicator size="large" color="#0000ff" style={styles.loading} />
+                ) : (
+                    <ScrollView style={{ marginTop: 20, paddingHorizontal: 16 }}>
+                        <View style={styles.produtoContainer}>
+                            {produtosFiltrados.map((produto) => (
+                                <ProdutoCard key={produto.id} produto={produto} />
+                            ))}
+                        </View>
+                    </ScrollView>
+                )}
             </ScrollView>
 
             <MenuInferior />
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff8f6',
     },
     scrollContainer: {
-        flex: 1, // Ocupa todo o espaço disponível, exceto o espaço do MenuInferior
+        flex: 1,
     },
     sectionTitle: {
         marginTop: 20,
@@ -70,10 +78,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 16,
     },
-    carregandoTexto: {
-        fontSize: 16,
-        textAlign: 'center',
+    loading: {
         marginTop: 20,
-        color: '#555',
     },
 });
