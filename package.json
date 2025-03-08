@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "axios": "^1.8.2",
     "expo": "~52.0.37",
     "expo-blur": "~14.0.3",
     "expo-constants": "^17.0.7",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@types/axios": "^0.9.36",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
     "@types/react-native-vector-icons": "^6.4.18",
