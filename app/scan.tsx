@@ -26,7 +26,10 @@ const ScannerScreen: React.FC = () => {
       
       {/* Simulação do scanner */}
       <View style={styles.scannerContainer}>
-        <Image source={require('/workspaces/CestaSmart/assets/images/scan.png')} style={styles.scannerImage} />
+        <Image 
+          source={{ uri: 'https://images.vexels.com/media/users/3/157862/isolated/preview/5fc76d9e8d748db3089a489cdd492d4b-icone-de-leitura-de-codigo-de-barras.png' }} 
+          style={styles.scannerImage} 
+        />
       </View>
       
       {/* Botões */}
