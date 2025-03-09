@@ -16,54 +16,48 @@ export default function HomeScreen() {
   const [search, setSearch] = useState("");
   const [produtos, setProdutos] = useState<Produto[]>([]);
 
+  const produtosPadrao = [
+    { id: 1, nome: 'Óleo de Soja', preco: 'R$ 9,99', mercado: 'Nosso Atacarejo', imagem: require('../assets/images/oleo.webp') },
+        { id: 2, nome: 'YoPRO', preco: 'R$ 13,99', mercado: 'Supermercado Pinheiro', imagem: require('../assets/images/yopro.png') },
+        { id: 3, nome: 'Molho de tomate', preco: 'R$ 4,99', mercado: 'Super São Geraldo', imagem: require('../assets/images/molho.png') },
+
+  ];
+
   const getProdutos = async () => {
     try {
-      const response = await axios.get<Produto[]>(
-        "http://localhost:3001/produtos"
-      );
-
-      setProdutos(response?.data ?? []);
+      const response = await axios.get<Produto[]>("http://localhost:3001/produtos");
+      setProdutos(response?.data.length ? response.data : produtosPadrao);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
+      setProdutos(produtosPadrao); // Usa os produtos padrão caso a API falhe
     }
   };
 
-  console.log(produtos);
+  useEffect(() => {
+    getProdutos();
+  }, []);
 
   const produtosFiltrados = produtos.filter((produto) =>
     produto.nome.toLowerCase().includes(search.toLowerCase())
   );
 
-  useEffect(() => {
-    getProdutos(); 
-  }, []);
-
   return (
     <View style={styles.container}>
-      {/* Conteúdo rolável */}
       <ScrollView style={styles.scrollContainer}>
         <PesquisaBar search={search} setSearch={setSearch} />
         <ParaVoce />
         <CategoriasHome />
-
-        <Text variant="headlineSmall" style={styles.sectionTitle}>
-          Ofertas
-        </Text>
+        
+        <Text variant="headlineSmall" style={styles.sectionTitle}>Ofertas</Text>
         <ScrollView style={{ marginTop: 20, paddingHorizontal: 16 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
+          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }}>
             {produtosFiltrados.map((produto) => (
               <ProdutoCard key={produto.id} produto={produto} />
             ))}
           </View>
         </ScrollView>
       </ScrollView>
-
+      
       <MenuInferior />
     </View>
   );
@@ -75,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff8f6",
   },
   scrollContainer: {
-    flex: 1, // Ocupa todo o espaço disponível, exceto o espaço do MenuInferior
+    flex: 1,
   },
   sectionTitle: {
     marginTop: 20,

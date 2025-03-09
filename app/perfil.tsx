@@ -41,7 +41,7 @@ export default function ProfileScreen() {
             <Text variant="bodyMedium" style={styles.menuText}>Dados da conta</Text>
           </View>
           <View style={styles.menuItem}>
-            <Text variant="bodyMedium" style={styles.menuText}>Histórico de compras</Text>
+            <Text variant="bodyMedium" onPress={() => router.push('/historico')} style={styles.menuText}>Histórico de compras</Text>
           </View>
           <View style={styles.menuItem}>
             <Text variant="bodyMedium" style={styles.menuText}>Ajuda e suporte</Text>

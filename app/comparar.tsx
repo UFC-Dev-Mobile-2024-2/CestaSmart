@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
 import { Appbar, Button, IconButton, List, Text, BottomNavigation } from "react-native-paper";
 import { useRouter } from "expo-router";
+import MenuInferior from "./components/MenuInferior";
 
 const CompararPrecosScreen = () => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const CompararPrecosScreen = () => {
   return (
     <View style={styles.container}>
       <Appbar.Header style={styles.appbar}>
-        <Appbar.BackAction onPress={voltarProduto} />
+        <Appbar.BackAction onPress={() => router.back()} />
         <Appbar.Content title="Comparar Preços" />
         <Appbar.Action icon="bell-outline" onPress={() => {}} />
       </Appbar.Header>
@@ -39,12 +40,7 @@ const CompararPrecosScreen = () => {
         <Text>Comparação de preços</Text>
       </ScrollView>
 
-      <BottomNavigation
-        navigationState={{ index, routes }}
-        onIndexChange={setIndex}
-        renderScene={renderScene}
-        barStyle={styles.bottomNav}
-      />
+      <MenuInferior/>
     </View>
   );
 };

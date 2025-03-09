@@ -26,7 +26,7 @@ const ScannerScreen: React.FC = () => {
       
       {/* Simulação do scanner */}
       <View style={styles.scannerContainer}>
-        <Image source={require('/workspaces/CestaSmart/assets/images/icon.png')} style={styles.scannerImage} />
+        <Image source={require('/workspaces/CestaSmart/assets/images/scan.png')} style={styles.scannerImage} />
       </View>
       
       {/* Botões */}

@@ -103,10 +103,6 @@ const LoginScreen: React.FC = () => {
           activeOutlineColor="#6B3E2E"
         />
 
-        <Text style={styles.forgotPassword} onPress={() => console.log("Esqueceu a senha?")}>
-          Esqueceu a senha?
-        </Text>
-
         <Button mode="contained" style={styles.button} onPress={handleLogin}>
           Entrar
         </Button>
